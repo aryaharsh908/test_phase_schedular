@@ -421,7 +421,7 @@
     }
     // If ALL words were stop words, return original words (fallback)
     if (meaningful.length === 0) {
-      return words.filter(function(w) { return w.length >= 2; });
+      return words.filter(function (w) { return w.length >= 2; });
     }
     return meaningful;
   }
@@ -526,19 +526,19 @@
         width: 60px;\
         height: 60px;\
         border-radius: 50%;\
-        background: linear-gradient(135deg, #7c3aed, #4f46e5);\
+        background: #0d766d;\
         border: none;\
         cursor: pointer;\
         z-index: 99999;\
         display: flex;\
         align-items: center;\
         justify-content: center;\
-        box-shadow: 0 6px 24px rgba(124, 58, 237, 0.45);\
+        box-shadow: 0 6px 24px rgba(13, 118, 109, 0.28);\
         transition: transform 0.3s ease, box-shadow 0.3s ease;\
       }\
       .scheduloai-chat-toggle:hover {\
         transform: scale(1.1);\
-        box-shadow: 0 8px 32px rgba(124, 58, 237, 0.6);\
+        box-shadow: 0 8px 32px rgba(13, 118, 109, 0.38);\
       }\
       .scheduloai-chat-toggle svg {\
         width: 28px;\
@@ -553,7 +553,7 @@
         position: absolute;\
         inset: -4px;\
         border-radius: 50%;\
-        border: 2px solid rgba(124, 58, 237, 0.4);\
+        border: 2px solid rgba(13, 118, 109, 0.35);\
         animation: scheduloai-pulse 2s ease-in-out infinite;\
       }\
       .scheduloai-chat-toggle.active::before { animation: none; border-color: transparent; }\
@@ -569,14 +569,14 @@
         max-width: calc(100vw - 32px);\
         height: 560px;\
         max-height: calc(100vh - 140px);\
-        background: #0f0f1a;\
-        border: 1px solid rgba(124, 58, 237, 0.25);\
+        background: #ffffff;\
+        border: 1px solid #d9e3dc;\
         border-radius: 20px;\
         z-index: 99998;\
         display: flex;\
         flex-direction: column;\
         overflow: hidden;\
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(124, 58, 237, 0.15);\
+        box-shadow: 0 20px 60px rgba(24, 49, 43, 0.16);\
         opacity: 0;\
         transform: translateY(20px) scale(0.95);\
         pointer-events: none;\
@@ -590,8 +590,8 @@
       }\
       .scheduloai-chat-header {\
         padding: 18px 20px;\
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(79, 70, 229, 0.1));\
-        border-bottom: 1px solid rgba(124, 58, 237, 0.15);\
+        background: #edf7f0;\
+        border-bottom: 1px solid #d9e3dc;\
         display: flex;\
         align-items: center;\
         gap: 12px;\
@@ -614,7 +614,7 @@
       .scheduloai-chat-header-title {\
         font-size: 15px;\
         font-weight: 600;\
-        color: #f1f1f1;\
+        color: #18312b;\
         line-height: 1.2;\
       }\
       .scheduloai-chat-header-subtitle {\
@@ -783,7 +783,7 @@
     // Chat window
     var win = document.createElement("div");
     win.className = "scheduloai-chat-window";
-    win.innerHTML = '<div class="scheduloai-chat-header"><div class="scheduloai-chat-avatar"><svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssLgChat" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset=".5" stop-color="#0ea5e9"/><stop offset="1" stop-color="#0c3557"/></linearGradient></defs><path d="M50 2L8 42l14 50q28 20 56 0l14-50Z" fill="url(#ssLgChat)"/><path d="M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z" fill="#081424" opacity=".85"/></svg></div><div class="scheduloai-chat-header-info"><div class="scheduloai-chat-header-title">SmartScheduler Assistant</div><div class="scheduloai-chat-header-subtitle"><span class="dot"></span> Online — Instant responses</div></div></div><div class="scheduloai-chat-messages" id="scheduloai-msgs"></div><div class="scheduloai-quick-actions" id="scheduloai-quick"></div><div class="scheduloai-chat-input-area"><input class="scheduloai-chat-input" id="scheduloai-input" type="text" placeholder="Ask me anything about SmartScheduler..." autocomplete="off" /><button class="scheduloai-chat-send" id="scheduloai-send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>';
+    win.innerHTML = '<div class="scheduloai-chat-header"><div class="scheduloai-chat-avatar"><svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ssLgChat" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset=".5" stop-color="#0ea5e9"/><stop offset="1" stop-color="#0c3557"/></linearGradient></defs><path d="M50 2L8 42l14 50q28 20 56 0l14-50Z" fill="url(#ssLgChat)"/><path d="M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z" fill="#081424" opacity=".85"/></svg></div><div class="scheduloai-chat-header-info"><div class="scheduloai-chat-header-title">Schedule Craft Assistant</div><div class="scheduloai-chat-header-subtitle"><span class="dot"></span> Online — Instant responses</div></div></div><div class="scheduloai-chat-messages" id="scheduloai-msgs"></div><div class="scheduloai-quick-actions" id="scheduloai-quick"></div><div class="scheduloai-chat-input-area"><input class="scheduloai-chat-input" id="scheduloai-input" type="text" placeholder="Ask about Schedule Craft..." autocomplete="off" /><button class="scheduloai-chat-send" id="scheduloai-send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15-7z"/></svg></button></div>';
     document.body.appendChild(win);
 
     var msgs = document.getElementById("scheduloai-msgs");
@@ -792,7 +792,7 @@
     var quickDiv = document.getElementById("scheduloai-quick");
 
     var quickQuestions = [
-      "What is SmartScheduler?",
+      "What is Schedule Craft?",
       "Features",
       "How to use?",
       "Why buy?",
@@ -876,7 +876,7 @@
     renderQuickActions();
     setTimeout(function () {
       addMessage(
-        "Hi there! 👋 I'm the **SmartScheduler Assistant**.\n\nI can help you with features, guides, pricing, technical details, and support.\n\nAsk me anything or tap a quick action below!\n\n📞 Helpline: **8406043847**",
+        "Hi there! I am the **Schedule Craft Assistant**.\n\nI can help you with features, guides, pricing, technical details, and support.\n\nAsk me anything or tap a quick action below!\n\nHelpline: **8406043847**",
         "bot"
       );
     }, 500);

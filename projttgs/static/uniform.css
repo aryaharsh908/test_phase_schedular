@@ -1,0 +1,466 @@
+:root {
+    --ui-ink: #18312b;
+    --ui-teal: #0d766d;
+    --ui-teal-dark: #095b55;
+    --ui-muted: #687873;
+    --ui-paper: #ffffff;
+    --ui-canvas: #f5f7f3;
+    --ui-line: #d9e3dc;
+    --ui-blue: #315b80;
+    --ui-gold: #c58b35;
+    --ui-shadow: 0 14px 34px rgba(24, 49, 43, 0.08);
+}
+
+html,
+body,
+body.site-layout {
+    background: var(--ui-canvas) !important;
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout {
+    font-family: "Poppins", system-ui, sans-serif !important;
+}
+
+body.site-layout .blob,
+body.site-layout #stars,
+body.site-layout #waves,
+body.site-layout #rcv {
+    display: none !important;
+}
+
+body.site-layout .nav {
+    background: rgba(245, 247, 243, 0.96) !important;
+    border-bottom: 1px solid var(--ui-line) !important;
+    box-shadow: 0 2px 14px rgba(24, 49, 43, 0.04);
+    backdrop-filter: none !important;
+}
+
+body.site-layout .nav-title,
+body.site-layout .nav-title span,
+body.site-layout .nav-link,
+body.site-layout .nav-link:hover {
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .nav-link::after {
+    background: var(--ui-gold) !important;
+}
+
+body.site-layout .btn-primary,
+body.site-layout .glow-btn,
+body.site-layout:not(:has(.login-page)) button.btn,
+body.site-layout:not(:has(.login-page)) .btn,
+body.site-layout .simple-home__primary {
+    background: var(--ui-teal) !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+}
+
+body.site-layout .btn-primary:hover,
+body.site-layout .glow-btn:hover,
+body.site-layout:not(:has(.login-page)) button.btn:hover,
+body.site-layout:not(:has(.login-page)) .btn:hover {
+    background: var(--ui-teal-dark) !important;
+    transform: translateY(-1px);
+}
+
+body.site-layout .mobile-menu {
+    background: var(--ui-paper) !important;
+    border-color: var(--ui-line) !important;
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .mobile-menu a,
+body.site-layout .mobile-theme-toggle {
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .hamburger span {
+    background: var(--ui-ink) !important;
+}
+
+body.site-layout .page-shell {
+    color: var(--ui-ink);
+}
+
+body.site-layout .page-shell>section:not(.simple-home):not(.simple-benefits),
+body.site-layout .dashboard-container,
+body.site-layout .content-container,
+body.site-layout .form-container,
+body.site-layout .role-card,
+body.site-layout .locked-card,
+body.site-layout .rcard,
+body.site-layout .dash-card,
+body.site-layout .flow-card,
+body.site-layout .stat-card,
+body.site-layout .card {
+    border-color: var(--ui-line) !important;
+    box-shadow: var(--ui-shadow) !important;
+}
+
+body.site-layout:not(:has(.login-page)) input,
+body.site-layout:not(:has(.login-page)) select,
+body.site-layout:not(:has(.login-page)) textarea {
+    background: var(--ui-paper) !important;
+    border: 1px solid #cbd8d0 !important;
+    border-radius: 5px !important;
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout:not(:has(.login-page)) input:focus,
+body.site-layout:not(:has(.login-page)) select:focus,
+body.site-layout:not(:has(.login-page)) textarea:focus {
+    border-color: var(--ui-teal) !important;
+    box-shadow: 0 0 0 3px rgba(13, 118, 109, 0.12) !important;
+    outline: 0 !important;
+}
+
+body.site-layout:not(:has(.login-page)) label,
+body.site-layout:not(:has(.login-page)) .form p,
+body.site-layout .muted,
+body.site-layout .subtitle,
+body.site-layout .role-sub,
+body.site-layout .role-desc,
+body.site-layout .rdesc {
+    color: var(--ui-muted) !important;
+}
+
+body.site-layout .role-heading,
+body.site-layout .rhead,
+body.site-layout .hero-heading,
+body.site-layout .dash-welcome {
+    color: var(--ui-ink) !important;
+    -webkit-text-fill-color: var(--ui-ink) !important;
+    background: none !important;
+    text-shadow: none !important;
+}
+
+body.site-layout .role-card,
+body.site-layout .rcard,
+body.site-layout:not(:has(.login-page)) .login-right,
+body.site-layout:not(:has(.login-page)) .login-left {
+    background: var(--ui-paper) !important;
+    border-radius: 10px !important;
+    backdrop-filter: none !important;
+}
+
+body.site-layout:not(:has(.login-page)) .google-btn,
+body.site-layout .btn-outline,
+body.site-layout .simple-home__secondary {
+    background: transparent !important;
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 5px !important;
+    color: var(--ui-teal) !important;
+    box-shadow: none !important;
+}
+
+body.site-layout:not(:has(.login-page)) .google-btn:hover,
+body.site-layout .btn-outline:hover {
+    background: #edf7f0 !important;
+    border-color: #a8c9b5 !important;
+}
+
+body.site-layout .links a,
+body.site-layout .flow-link {
+    color: var(--ui-teal);
+}
+
+body.site-layout .simple-home__primary {
+    color: #fff !important;
+}
+
+body.site-layout .admin-shortcuts-wrap {
+    background: #edf2ed !important;
+    border-bottom: 1px solid var(--ui-line) !important;
+}
+
+body.site-layout .admin-shortcut {
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 5px !important;
+    background: var(--ui-paper) !important;
+    color: var(--ui-ink) !important;
+    box-shadow: none !important;
+}
+
+body.site-layout .admin-shortcut:hover {
+    border-color: #a8c9b5 !important;
+    background: #edf7f0 !important;
+}
+
+body.site-layout .dash-card {
+    background: var(--ui-paper) !important;
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 8px !important;
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .dash-card:hover {
+    border-color: #a8c9b5 !important;
+    box-shadow: 0 18px 38px rgba(24, 49, 43, 0.12) !important;
+    transform: translateY(-2px);
+}
+
+body.site-layout .dash-card h3,
+body.site-layout .dash-card p,
+body.site-layout .flow-card h3,
+body.site-layout .flow-card p {
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .dash-card p,
+body.site-layout .flow-card p {
+    color: var(--ui-muted) !important;
+}
+
+body.site-layout .dash-icon-wrap,
+body.site-layout .flow-icon,
+body.site-layout .ricon {
+    background: #edf7f0 !important;
+    border: 1px solid #c9dfcf !important;
+    color: var(--ui-teal) !important;
+    box-shadow: none !important;
+}
+
+body.site-layout .rcard:hover .ricon,
+body.site-layout .rcard:hover .rname,
+body.site-layout .rcard:hover .rarr {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+body.site-layout .rpage {
+    min-height: calc(100vh - 70px);
+    padding: 64px 20px 78px;
+}
+
+body.site-layout .rcont {
+    max-width: 920px;
+}
+
+body.site-layout .rring,
+body.site-layout .ro,
+body.site-layout .rgrid {
+    display: none !important;
+}
+
+body.site-layout .rlogo {
+    display: inline-flex !important;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+    filter: none !important;
+}
+
+body.site-layout .rlogo>div:last-child {
+    filter: none !important;
+}
+
+body.site-layout .reye {
+    color: var(--ui-teal) !important;
+    font-size: 0.72rem;
+}
+
+body.site-layout .rhead {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+}
+
+body.site-layout .rhg {
+    color: var(--ui-teal) !important;
+    -webkit-text-fill-color: var(--ui-teal) !important;
+}
+
+body.site-layout .rsub {
+    color: var(--ui-muted) !important;
+}
+
+body.site-layout .rgd {
+    gap: 18px;
+}
+
+body.site-layout .rcard {
+    padding: 30px 22px 26px;
+    border: 1px solid var(--ui-line) !important;
+    color: var(--ui-ink) !important;
+    transform: none !important;
+}
+
+body.site-layout .rcard::before,
+body.site-layout .rcgl,
+body.site-layout .rcsh {
+    display: none !important;
+}
+
+body.site-layout .rname {
+    color: var(--ui-ink) !important;
+    font-size: 1.15rem;
+}
+
+body.site-layout .rarr {
+    opacity: 1 !important;
+    color: var(--ui-teal) !important;
+    transform: none !important;
+}
+
+body.site-layout .page-load-pill {
+    border: 1px solid var(--ui-line) !important;
+    background: var(--ui-paper) !important;
+    box-shadow: var(--ui-shadow) !important;
+}
+
+body.site-layout .page-load-text {
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .site-footer-ref .footer-title,
+body.site-layout .site-footer-ref .footer-title span {
+    color: #dce9e5 !important;
+}
+
+body.site-layout .site-footer-ref .footer-subtitle {
+    color: #a9bbb6 !important;
+}
+
+body.site-layout .message-modal__backdrop {
+    background: rgba(24, 49, 43, 0.3) !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+body.site-layout .message-modal__panel {
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 10px !important;
+    background: var(--ui-paper) !important;
+    box-shadow: 0 24px 64px rgba(24, 49, 43, 0.18) !important;
+}
+
+body.site-layout .message-modal__accent {
+    background: var(--ui-teal) !important;
+}
+
+body.site-layout .message-modal__title,
+body.site-layout .message-modal__text {
+    color: var(--ui-ink) !important;
+}
+
+body.site-layout .message-modal__subtitle,
+body.site-layout .message-modal__eyebrow {
+    color: var(--ui-muted) !important;
+}
+
+
+/* Role selection: calm, legible cards instead of animated glass panels. */
+body.site-layout .rpage {
+    background: var(--ui-canvas) !important;
+}
+
+body.site-layout .rcont {
+    background: transparent !important;
+}
+
+body.site-layout .rcard,
+body.site-layout .rcard:hover,
+body.site-layout .rcard:active {
+    min-height: 245px;
+    border: 1px solid var(--ui-line) !important;
+    background: var(--ui-paper) !important;
+    color: var(--ui-ink) !important;
+    box-shadow: var(--ui-shadow) !important;
+    transform: none !important;
+}
+
+body.site-layout .rcard:hover {
+    border-color: #9bbdad !important;
+    box-shadow: 0 18px 38px rgba(24, 49, 43, 0.13) !important;
+}
+
+body.site-layout .rcard .ricon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    color: var(--ui-teal) !important;
+}
+
+body.site-layout .rcard .rdesc {
+    color: var(--ui-muted) !important;
+}
+
+body.site-layout .rcard .rarr {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
+}
+
+/* Teacher login: keep the useful classroom image, but make the form a clear workspace. */
+/* Admin dashboard: neutralize leftover inline neon treatments. */
+body.site-layout .hero {
+    background: transparent !important;
+}
+
+body.site-layout .hero-heading {
+    color: var(--ui-ink) !important;
+    font-size: clamp(28px, 4vw, 44px) !important;
+}
+
+body.site-layout .dash-grid {
+    gap: 16px !important;
+}
+
+body.site-layout .dash-card[style] {
+    background: var(--ui-paper) !important;
+    border-color: var(--ui-line) !important;
+}
+
+body.site-layout .dash-card[style] h3,
+body.site-layout .dash-card[style] .icon {
+    color: var(--ui-teal) !important;
+}
+
+body.site-layout .lwrap {
+    min-height: calc(100vh - 84px);
+    padding: 54px 20px 70px;
+    background: var(--ui-canvas) !important;
+}
+
+body.site-layout .lwrap .lo,
+body.site-layout .lwrap .lgrid,
+body.site-layout .lwrap #lcv {
+    display: none !important;
+}
+
+body.site-layout .lbox {
+    max-width: 860px;
+    border: 1px solid var(--ui-line) !important;
+    border-radius: 10px !important;
+    background: var(--ui-paper) !important;
+    box-shadow: 0 20px 50px rgba(24, 49, 43, 0.12) !important;
+    backdrop-filter: none !important;
+}
+
+body.site-layout .lleft {
+    min-height: 480px;
+}
+
+body.site-layout .llov {
+    background: linear-gradient(to top, rgba(24, 49, 43, .92), rgba(13, 118, 109, .08)) !important;
+}
+
+body.site-layout .lright {
+    padding: 42px 46px !important;
+    background: var(--ui-paper) !important;
+}
+
+body.site-layout .ltitle {
+    background: none !important;
+    color: var(--ui-ink) !important;
+    -webkit-text-fill-color: var(--ui-ink) !important;
+    letter-spacing: 0 !important;
+}
+
+body.site-layout .lsub,
+body.site-layout .llinks,
