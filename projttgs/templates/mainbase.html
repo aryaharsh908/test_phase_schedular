@@ -1,466 +1,472 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
+<script>if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');</script>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Home{% endblock %}</title>
-   <link rel="stylesheet" href="{% static 'navbar.css' %}">
- <link rel="stylesheet" href="{% static 'base.css' %}"> 
-    <link rel="stylesheet" href="{% static 'homepage.css' %}"> 
-    <link rel="preload" href="{% static 'all_add_pageCSS.css' %}" as="style">
-<link rel="stylesheet" href="{% static 'all_add_pageCSS.css' %}">
-     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+  <link rel="stylesheet" href="{% static 'homepage.css' %}">
+  <link rel="stylesheet" href="{% static 'uniform.css' %}?v=3">
+  <link rel="preload" href="{% static 'all_add_pageCSS.css' %}" as="style">
+  <link rel="stylesheet" href="{% static 'all_add_pageCSS.css' %}">
+  <link rel="stylesheet" href="{% static 'coordinator.css' %}?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
-    <!-- tab icon -->
-     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50' y1='0' x2='50' y2='120' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='.5' stop-color='%230ea5e9'/%3E%3Cstop offset='1' stop-color='%230c3557'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 2L8 42l14 50q28 20 56 0l14-50Z' fill='url(%23g)'/%3E%3Cpath d='M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z' fill='%23081424' opacity='.85'/%3E%3C/svg%3E">
-    <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50' y1='0' x2='50' y2='120' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='.5' stop-color='%230ea5e9'/%3E%3Cstop offset='1' stop-color='%230c3557'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 2L8 42l14 50q28 20 56 0l14-50Z' fill='url(%23g)'/%3E%3Cpath d='M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z' fill='%23081424' opacity='.85'/%3E%3C/svg%3E">
+  <!-- tab icon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50' y1='0' x2='50' y2='120' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='.5' stop-color='%230ea5e9'/%3E%3Cstop offset='1' stop-color='%230c3557'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 2L8 42l14 50q28 20 56 0l14-50Z' fill='url(%23g)'/%3E%3Cpath d='M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z' fill='%23081424' opacity='.85'/%3E%3C/svg%3E">
+  <link rel="shortcut icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50' y1='0' x2='50' y2='120' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='.5' stop-color='%230ea5e9'/%3E%3Cstop offset='1' stop-color='%230c3557'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 2L8 42l14 50q28 20 56 0l14-50Z' fill='url(%23g)'/%3E%3Cpath d='M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z' fill='%23081424' opacity='.85'/%3E%3C/svg%3E">
 
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Asset&family=Notable&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asset&family=Notable&display=swap" rel="stylesheet">
 
 </head>
 
 <body class="site-layout">
-    {% include 'navbarmain.html' %} 
-    {% if messages %}
-    <div class="message-modal" id="globalMessageModal" role="dialog" aria-modal="true" aria-labelledby="globalMessageModalTitle">
-      <div class="message-modal__backdrop" data-message-close></div>
-      <div class="message-modal__panel">
-        <div class="message-modal__accent"></div>
-        <div class="message-modal__header">
-          <div>
-            <p class="message-modal__eyebrow">Import Report</p>
-            <h2 class="message-modal__title" id="globalMessageModalTitle">Upload Feedback</h2>
-          </div>
-          <button type="button" class="message-modal__close" data-message-close aria-label="Close popup">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  {% include 'navbarmain.html' %}
+  {% if messages %}
+  <div class="message-modal" id="globalMessageModal" role="dialog" aria-modal="true"
+    aria-labelledby="globalMessageModalTitle">
+    <div class="message-modal__backdrop" data-message-close></div>
+    <div class="message-modal__panel">
+      <div class="message-modal__accent"></div>
+      <div class="message-modal__header">
+        <div>
+          <p class="message-modal__eyebrow">Import Report</p>
+          <h2 class="message-modal__title" id="globalMessageModalTitle">Upload Feedback</h2>
         </div>
-        <p class="message-modal__subtitle">Each result is listed below so you can spot skipped rows and validation problems quickly.</p>
-        <div class="message-modal__list" role="list">
-          {% for message in messages %}
-          <div class="message-modal__item message-modal__item--{{ message.tags|default:'info' }}" role="listitem">
-            <div class="message-modal__badge">{{ message.tags|default:"info"|upper }}</div>
-            <div class="message-modal__text">{{ message }}</div>
-          </div>
-          {% endfor %}
+        <button type="button" class="message-modal__close" data-message-close aria-label="Close popup">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p class="message-modal__subtitle">Each result is listed below so you can spot skipped rows and validation
+        problems quickly.</p>
+      <div class="message-modal__list" role="list">
+        {% for message in messages %}
+        <div class="message-modal__item message-modal__item--{{ message.tags|default:'info' }}" role="listitem">
+          <div class="message-modal__badge">{{ message.tags|default:"info"|upper }}</div>
+          <div class="message-modal__text">{{ message }}</div>
         </div>
+        {% endfor %}
       </div>
     </div>
-    {% endif %}
-    <div id="pageLoadIndicator" class="page-load-indicator" aria-hidden="true">
-      <div class="page-load-pill">
-        <div class="page-load-spinner">
-          <div class="page-load-logo">
-            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="pageLoadLgMain" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#38bdf8"/>
-                  <stop offset=".5" stop-color="#0ea5e9"/>
-                  <stop offset="1" stop-color="#0c3557"/>
-                </linearGradient>
-              </defs>
-              <path d="M50 2L8 42l14 50q28 20 56 0l14-50Z" fill="url(#pageLoadLgMain)"/>
-              <path d="M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z" fill="#081424" opacity=".85"/>
-            </svg>
-          </div>
+  </div>
+  {% endif %}
+  <div id="pageLoadIndicator" class="page-load-indicator" aria-hidden="true">
+    <div class="page-load-pill">
+      <div class="page-load-spinner">
+        <div class="page-load-logo">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="pageLoadLgMain" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38bdf8" />
+                <stop offset=".5" stop-color="#0ea5e9" />
+                <stop offset="1" stop-color="#0c3557" />
+              </linearGradient>
+            </defs>
+            <path d="M50 2L8 42l14 50q28 20 56 0l14-50Z" fill="url(#pageLoadLgMain)" />
+            <path d="M50 36c13 17 13 37 0 52-13-15-13-35 0-52Z" fill="#081424" opacity=".85" />
+          </svg>
         </div>
-        <span class="page-load-text">Loading SmartScheduler...</span>
       </div>
+      <span class="page-load-text">Loading Schedule Craft...</span>
     </div>
-     <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  </div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
-    {% block workflow_progress %}{% endblock %}
+  {% block workflow_progress %}{% endblock %}
 
-    <main class="container page-shell">
-        {% block content %}
-        
-        {% endblock %}
-    </main>
+  <main class="container page-shell">
+    {% block content %}
 
-     {% include 'mainfotter.html' %}
-    <script src="{% static 'chatbot.js' %}"></script>
-    <style>
+    {% endblock %}
+  </main>
+
+  {% include 'mainfotter.html' %}
+  <script src="{% static 'chatbot.js' %}?v=3"></script>
+  <style>
+    .message-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000001;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .message-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.2), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.2), transparent 34%),
+        rgba(3, 7, 18, 0.76);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .message-modal__panel {
+      position: relative;
+      width: min(920px, 100%);
+      max-height: min(78vh, 760px);
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(8, 15, 30, 0.98));
+      box-shadow: 0 30px 100px rgba(2, 6, 23, 0.5);
+    }
+
+    .message-modal__accent {
+      height: 6px;
+      background: linear-gradient(90deg, #22c55e, #38bdf8 45%, #f59e0b 75%, #f472b6);
+    }
+
+    .message-modal__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 28px 30px 8px;
+    }
+
+    .message-modal__eyebrow {
+      margin: 0 0 8px;
+      color: #38bdf8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .message-modal__title {
+      margin: 0;
+      color: #f8fafc;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.05;
+    }
+
+    .message-modal__subtitle {
+      margin: 0;
+      padding: 0 30px 18px;
+      color: rgba(226, 232, 240, 0.78);
+      font-size: 14px;
+    }
+
+    .message-modal__close {
+      border: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.12);
+      color: #e2e8f0;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .message-modal__close:hover {
+      transform: scale(1.06);
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    .message-modal__list {
+      display: grid;
+      gap: 12px;
+      padding: 0 22px 24px 30px;
+      margin: 0 8px 10px 0;
+      max-height: calc(min(78vh, 760px) - 140px);
+      overflow: auto;
+    }
+
+    .message-modal__list::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .message-modal__list::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.28);
+    }
+
+    .message-modal__item {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .message-modal__item--success {
+      background: rgba(20, 83, 45, 0.34);
+      border-color: rgba(34, 197, 94, 0.22);
+    }
+
+    .message-modal__item--warning {
+      background: rgba(120, 53, 15, 0.32);
+      border-color: rgba(245, 158, 11, 0.24);
+    }
+
+    .message-modal__item--error {
+      background: rgba(127, 29, 29, 0.34);
+      border-color: rgba(248, 113, 113, 0.24);
+    }
+
+    .message-modal__item--info {
+      background: rgba(30, 41, 59, 0.72);
+      border-color: rgba(56, 189, 248, 0.16);
+    }
+
+    .message-modal__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .message-modal__text {
+      color: #e2e8f0;
+      font-size: 14px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    body.message-modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
       .message-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 1000001;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-      }
-
-      .message-modal__backdrop {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(circle at top left, rgba(34, 211, 238, 0.2), transparent 38%),
-          radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.2), transparent 34%),
-          rgba(3, 7, 18, 0.76);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        padding: 14px;
       }
 
       .message-modal__panel {
-        position: relative;
-        width: min(920px, 100%);
-        max-height: min(78vh, 760px);
-        overflow: hidden;
-        border-radius: 28px;
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(8, 15, 30, 0.98));
-        box-shadow: 0 30px 100px rgba(2, 6, 23, 0.5);
-      }
-
-      .message-modal__accent {
-        height: 6px;
-        background: linear-gradient(90deg, #22c55e, #38bdf8 45%, #f59e0b 75%, #f472b6);
+        max-height: 84vh;
+        border-radius: 22px;
       }
 
       .message-modal__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 20px;
-        padding: 28px 30px 8px;
-      }
-
-      .message-modal__eyebrow {
-        margin: 0 0 8px;
-        color: #38bdf8;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
-
-      .message-modal__title {
-        margin: 0;
-        color: #f8fafc;
-        font-size: clamp(24px, 3vw, 34px);
-        line-height: 1.05;
+        padding: 22px 20px 8px;
       }
 
       .message-modal__subtitle {
-        margin: 0;
-        padding: 0 30px 18px;
-        color: rgba(226, 232, 240, 0.78);
-        font-size: 14px;
-      }
-
-      .message-modal__close {
-        border: 0;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(148, 163, 184, 0.12);
-        color: #e2e8f0;
-        font-size: 28px;
-        line-height: 1;
-        cursor: pointer;
-        transition: transform 0.18s ease, background 0.18s ease;
-      }
-
-      .message-modal__close:hover {
-        transform: scale(1.06);
-        background: rgba(148, 163, 184, 0.2);
+        padding: 0 20px 16px;
       }
 
       .message-modal__list {
-        display: grid;
-        gap: 12px;
-        padding: 0 22px 24px 30px;
-        margin: 0 8px 10px 0;
-        max-height: calc(min(78vh, 760px) - 140px);
-        overflow: auto;
-      }
-
-      .message-modal__list::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      .message-modal__list::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: rgba(148, 163, 184, 0.28);
+        padding: 0 14px 18px 20px;
       }
 
       .message-modal__item {
-        display: grid;
-        grid-template-columns: 92px minmax(0, 1fr);
-        gap: 16px;
-        align-items: start;
-        padding: 16px 18px;
-        border-radius: 18px;
-        border: 1px solid rgba(148, 163, 184, 0.14);
-        background: rgba(15, 23, 42, 0.7);
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
+    }
 
-      .message-modal__item--success {
-        background: rgba(20, 83, 45, 0.34);
-        border-color: rgba(34, 197, 94, 0.22);
+    .page-load-indicator {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-16px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000000;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .page-load-indicator.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .page-load-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      background: rgba(7, 15, 32, 0.9);
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.42);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .page-load-spinner {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    .page-load-spinner::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(56, 189, 248, 0.2);
+      border-top-color: #38bdf8;
+      border-right-color: #22c55e;
+      animation: pageLoadSpin 0.85s linear infinite;
+      box-shadow: 0 0 18px rgba(14, 165, 233, 0.32);
+    }
+
+    .page-load-logo {
+      width: 26px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+    }
+
+    .page-load-logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .page-load-text {
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @keyframes pageLoadSpin {
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      .message-modal__item--warning {
-        background: rgba(120, 53, 15, 0.32);
-        border-color: rgba(245, 158, 11, 0.24);
-      }
-
-      .message-modal__item--error {
-        background: rgba(127, 29, 29, 0.34);
-        border-color: rgba(248, 113, 113, 0.24);
-      }
-
-      .message-modal__item--info {
-        background: rgba(30, 41, 59, 0.72);
-        border-color: rgba(56, 189, 248, 0.16);
-      }
-
-      .message-modal__badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 34px;
-        padding: 0 12px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-        color: #f8fafc;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-      }
-
-      .message-modal__text {
-        color: #e2e8f0;
-        font-size: 14px;
-        line-height: 1.55;
-        word-break: break-word;
-      }
-
-      body.message-modal-open {
-        overflow: hidden;
-      }
-
-      @media (max-width: 640px) {
-        .message-modal {
-          padding: 14px;
-        }
-
-        .message-modal__panel {
-          max-height: 84vh;
-          border-radius: 22px;
-        }
-
-        .message-modal__header {
-          padding: 22px 20px 8px;
-        }
-
-        .message-modal__subtitle {
-          padding: 0 20px 16px;
-        }
-
-        .message-modal__list {
-          padding: 0 14px 18px 20px;
-        }
-
-        .message-modal__item {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-      }
-
+    @media (max-width: 640px) {
       .page-load-indicator {
-        position: fixed;
-        top: 16px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-16px);
-        opacity: 0;
-        pointer-events: none;
-        z-index: 1000000;
-        transition: opacity 0.22s ease, transform 0.22s ease;
-      }
-
-      .page-load-indicator.is-visible {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        top: 12px;
       }
 
       .page-load-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 16px 10px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.28);
-        background: rgba(7, 15, 32, 0.9);
-        box-shadow: 0 16px 40px rgba(2, 6, 23, 0.42);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-
-      .page-load-spinner {
-        position: relative;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-      }
-
-      .page-load-spinner::before {
-        content: "";
-        position: absolute;
-        inset: -4px;
-        border-radius: 50%;
-        border: 2.5px solid rgba(56, 189, 248, 0.2);
-        border-top-color: #38bdf8;
-        border-right-color: #22c55e;
-        animation: pageLoadSpin 0.85s linear infinite;
-        box-shadow: 0 0 18px rgba(14, 165, 233, 0.32);
-      }
-
-      .page-load-logo {
-        width: 26px;
-        height: 30px;
-        display: grid;
-        place-items: center;
-      }
-
-      .page-load-logo svg {
-        width: 100%;
-        height: 100%;
-        display: block;
+        padding: 9px 12px 9px 10px;
+        gap: 10px;
       }
 
       .page-load-text {
-        color: #e2e8f0;
-        font-size: 13px;
-        font-weight: 600;
-        white-space: nowrap;
+        font-size: 12px;
       }
+    }
+  </style>
+  <script>
+    (function () {
+      const messageModal = document.getElementById("globalMessageModal");
+      if (messageModal) {
+        document.body.classList.add("message-modal-open");
+        const closeModal = () => {
+          messageModal.remove();
+          document.body.classList.remove("message-modal-open");
+        };
 
-      @keyframes pageLoadSpin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      @media (max-width: 640px) {
-        .page-load-indicator {
-          top: 12px;
-        }
-
-        .page-load-pill {
-          padding: 9px 12px 9px 10px;
-          gap: 10px;
-        }
-
-        .page-load-text {
-          font-size: 12px;
-        }
-      }
-    </style>
-    <script>
-      (function () {
-        const messageModal = document.getElementById("globalMessageModal");
-        if (messageModal) {
-          document.body.classList.add("message-modal-open");
-          const closeModal = () => {
-            messageModal.remove();
-            document.body.classList.remove("message-modal-open");
-          };
-
-          messageModal.querySelectorAll("[data-message-close]").forEach((node) => {
-            node.addEventListener("click", closeModal);
-          });
-
-          document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && document.getElementById("globalMessageModal")) {
-              closeModal();
-            }
-          });
-        }
-
-        const pageShell = document.querySelector(".page-shell");
-        const stickyFooter = document.querySelector(".site-footer-ref, .footer, .footer-new");
-        function enforceStickyFooterLayout() {
-          if (!pageShell || !stickyFooter) return;
-          document.body.style.display = "flex";
-          document.body.style.flexDirection = "column";
-          document.body.style.minHeight = "100vh";
-          document.body.style.minHeight = "100svh";
-          pageShell.style.flex = "1 0 auto";
-          pageShell.style.width = "100%";
-          stickyFooter.style.marginTop = "auto";
-        }
-
-        const loader = document.getElementById("pageLoadIndicator");
-        enforceStickyFooterLayout();
-        window.addEventListener("resize", enforceStickyFooterLayout);
-        if (!loader) return;
-
-        let showTimer = null;
-
-        function showPageLoader() {
-          if (showTimer) {
-            window.clearTimeout(showTimer);
-          }
-          showTimer = window.setTimeout(() => {
-            loader.classList.add("is-visible");
-            loader.setAttribute("aria-hidden", "false");
-          }, 120);
-        }
-
-        function hidePageLoader() {
-          if (showTimer) {
-            window.clearTimeout(showTimer);
-            showTimer = null;
-          }
-          loader.classList.remove("is-visible");
-          loader.setAttribute("aria-hidden", "true");
-        }
-
-        function shouldSkipLoaderForLink(link) {
-          const href = (link.getAttribute("href") || "").trim();
-          if (!href || href === "#" || href.startsWith("#")) return true;
-          if (href.startsWith("javascript:")) return true;
-          if (link.hasAttribute("download")) return true;
-          if (link.target && link.target.toLowerCase() === "_blank") return true;
-          if (link.dataset.noPageLoader === "true") return true;
-          return false;
-        }
-
-        document.addEventListener("click", (event) => {
-          const link = event.target.closest("a[href]");
-          if (!link) return;
-          if (event.defaultPrevented) return;
-          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-          if (shouldSkipLoaderForLink(link)) return;
-          showPageLoader();
+        messageModal.querySelectorAll("[data-message-close]").forEach((node) => {
+          node.addEventListener("click", closeModal);
         });
 
-        document.addEventListener("submit", (event) => {
-          const form = event.target;
-          if (!(form instanceof HTMLFormElement)) return;
-          if (event.defaultPrevented) return;
-          if (form.dataset.noPageLoader === "true") return;
-          showPageLoader();
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && document.getElementById("globalMessageModal")) {
+            closeModal();
+          }
         });
+      }
 
-        window.addEventListener("pageshow", hidePageLoader);
-        window.addEventListener("load", hidePageLoader);
-      })();
-    </script>
+      const pageShell = document.querySelector(".page-shell");
+      const stickyFooter = document.querySelector(".site-footer-ref, .footer, .footer-new");
+      function enforceStickyFooterLayout() {
+        if (!pageShell || !stickyFooter) return;
+        document.body.style.display = "flex";
+        document.body.style.flexDirection = "column";
+        document.body.style.minHeight = "100vh";
+        document.body.style.minHeight = "100svh";
+        pageShell.style.flex = "1 0 auto";
+        pageShell.style.width = "100%";
+        stickyFooter.style.marginTop = "auto";
+      }
+
+      const loader = document.getElementById("pageLoadIndicator");
+      enforceStickyFooterLayout();
+      window.addEventListener("resize", enforceStickyFooterLayout);
+      if (!loader) return;
+
+      let showTimer = null;
+
+      function showPageLoader() {
+        if (showTimer) {
+          window.clearTimeout(showTimer);
+        }
+        showTimer = window.setTimeout(() => {
+          loader.classList.add("is-visible");
+          loader.setAttribute("aria-hidden", "false");
+        }, 120);
+      }
+
+      function hidePageLoader() {
+        if (showTimer) {
+          window.clearTimeout(showTimer);
+          showTimer = null;
+        }
+        loader.classList.remove("is-visible");
+        loader.setAttribute("aria-hidden", "true");
+      }
+
+      function shouldSkipLoaderForLink(link) {
+        const href = (link.getAttribute("href") || "").trim();
+        if (!href || href === "#" || href.startsWith("#")) return true;
+        if (href.startsWith("javascript:")) return true;
+        if (link.hasAttribute("download")) return true;
+        if (link.target && link.target.toLowerCase() === "_blank") return true;
+        if (link.dataset.noPageLoader === "true") return true;
+        return false;
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+        if (!link) return;
+        if (event.defaultPrevented) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (shouldSkipLoaderForLink(link)) return;
+        showPageLoader();
+      });
+
+      document.addEventListener("submit", (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        if (event.defaultPrevented) return;
+        if (form.dataset.noPageLoader === "true") return;
+        showPageLoader();
+      });
+
+      window.addEventListener("pageshow", hidePageLoader);
+      window.addEventListener("load", hidePageLoader);
+    })();
+  </script>
 </body>
+
 </html>

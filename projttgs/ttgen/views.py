@@ -28,7 +28,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings as django_settings
 
 from . import views_other as public_core
-from .models import UserAccessPlan
+from .models import Instructor, UserAccessPlan
 from .views_other import *  # noqa: F401,F403
 from .superadmin_views import (  # noqa: F401
     superadmin_login,
@@ -67,6 +67,33 @@ from .superadmin_views import (  # noqa: F401
 logger = logging.getLogger(__name__)
 
 _BYPASS_ACCESS_CHECKS = getattr(django_settings, "BYPASS_ACCESS", False)
+
+
+@login_required
+def rename_instructor(request):
+    """Rename one of the current user's instructors from the slot editor."""
+    if request.method != "POST":
+        messages.error(request, "Teacher names can only be changed with the rename form.")
+        return redirect("addInstructors")
+
+    instructor_id = request.POST.get("instructor_id")
+    new_name = (request.POST.get("new_name") or "").strip()
+    instructor = Instructor.objects.filter(pk=instructor_id, user=request.user).first()
+
+    if instructor is None:
+        messages.error(request, "Teacher not found.")
+    elif not new_name:
+        messages.error(request, "Enter a new teacher name.")
+    else:
+        instructor.name = new_name[:100]
+        instructor.save(update_fields=["name"])
+        public_core.reset_global_schedule_cache(request.user.id)
+        messages.success(request, "Teacher renamed successfully.")
+
+    next_url = request.POST.get("next")
+    if next_url and next_url.startswith("/") and not next_url.startswith("//"):
+        return redirect(next_url)
+    return redirect("addInstructors")
 
 _GENERATOR_VIEW_NAMES = (
     "generate",

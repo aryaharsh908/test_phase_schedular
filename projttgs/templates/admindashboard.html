@@ -1,44 +1,19 @@
 {% extends "mainbase.html" %}
-{% block title %}SmartScheduler | Smart Timetable Generator{% endblock %}
-{% block workflow_progress %}
-<div class="admin-shortcuts-wrap">
-  <div class="container">
-    <div class="admin-shortcuts-shell">
-      {% if has_active_subscription %}
-      <a href="{% url 'generate' %}" class="admin-shortcut admin-shortcut-subscribe">
-        Create Timetable
-      </a>
-      {% else %}
-      <button type="button" class="admin-shortcut admin-shortcut-subscribe js-open-subscription-modal">
-        Subscribe
-      </button>
-      {% endif %}
-      <a href="{% url 'demo_generate_start' %}" class="admin-shortcut admin-shortcut-demo">
-        Demo Generation
-      </a>
-      <a href="{% url 'convert_csv' %}" class="admin-shortcut admin-shortcut-csv">
-        <span class="admin-csv-orb"></span>
-        CSV
-      </a>
-      <a href="{% url 'prefilled_timetable_setup' %}" class="admin-shortcut admin-shortcut-csv">
-        Prefilled Table
-      </a>
-    </div>
-  </div>
-</div>
-{% endblock %}
+{% block title %}Schedule Craft | Timetable Dashboard{% endblock %}
 {% block content %}
+
+<span class="admin-dashboard-marker" aria-hidden="true"></span>
 
 <!-- MESSAGE POPUP -->
 {% if messages %}
 <div id="toast-container">
   {% if messages %}
-      {% for message in messages %}
-          <div class="toast {{ message.tags }}">
-              {{ message }}
-              <span class="close-btn">&times;</span>
-          </div>
-      {% endfor %}
+  {% for message in messages %}
+  <div class="toast {{ message.tags }}">
+    {{ message }}
+    <span class="close-btn">&times;</span>
+  </div>
+  {% endfor %}
   {% endif %}
 </div>
 {% endif %}
@@ -50,16 +25,16 @@
 <section class="hero">
   <div class="hero-inner">
 
-     <h2 class="dash-welcome">Welcome, {{ user.username }} 👋</h2>
-     <br>
+    <h2 class="dash-welcome">Welcome, {{ user.username }} 👋</h2>
+    <br>
 
     <!-- MAIN HEADING -->
     <h1 class="hero-heading">
-      Welcome To SmartScheduler
+      Welcome To Schedule Craft
     </h1>
 
     <!-- BUTTON -->
-     <br><br>
+    <br><br>
     <a href="{% url 'addDepts' %}" class="glow-btn">
       <span>Generate Timetable</span>
     </a>
@@ -68,97 +43,75 @@
 
   <!-- DASHBOARD AREA -->
   <div class="dash-wrapper">
-       <br>
-     <div class="dash-grid">
+    <br>
+    <div class="dash-grid">
 
-        <!-- TOTAL TEACHERS -->
-        <a href="{% url 'dashboard_editinstructor' %}" class="dash-card">
-            <div class="dash-icon-wrap">
-                <i class="icon fas fa-chalkboard-teacher"></i>
-            </div>
-            <h3>Total Teachers</h3>
-            <p>{{ teacher_count }}</p>
-        </a>
+      <!-- TOTAL TEACHERS -->
+      <a href="{% url 'dashboard_editinstructor' %}" class="dash-card">
+        <div class="dash-icon-wrap">
+          <i class="icon fas fa-chalkboard-teacher"></i>
+        </div>
+        <h3>Total Teachers</h3>
+        <p>{{ teacher_count }}</p>
+      </a>
 
-        <!-- TOTAL DEPARTMENTS -->
-        <a href="{% url 'dashboard_editdepartment' %}" class="dash-card">
-            <div class="dash-icon-wrap">
-                <i class="icon fas fa-building"></i>
-            </div>
-            <h3>Departments</h3>
-            <p>{{ department_count }}</p>
-        </a>
+      <!-- TOTAL DEPARTMENTS -->
+      <a href="{% url 'dashboard_editdepartment' %}" class="dash-card">
+        <div class="dash-icon-wrap">
+          <i class="icon fas fa-building"></i>
+        </div>
+        <h3>Departments</h3>
+        <p>{{ department_count }}</p>
+      </a>
 
-        <!-- TOTAL CLASSES -->
-        <a href="{% url 'dashboard_editsection' %}" class="dash-card">
-            <div class="dash-icon-wrap">
-                <i class="icon fas fa-layer-group"></i>
-            </div>
-            <h3>Total Classes</h3>
-            <p>{{ class_count }}</p>
-        </a>
+      <!-- TOTAL CLASSES -->
+      <a href="{% url 'dashboard_editsection' %}" class="dash-card">
+        <div class="dash-icon-wrap">
+          <i class="icon fas fa-layer-group"></i>
+        </div>
+        <h3>Total Classes</h3>
+        <p>{{ class_count }}</p>
+      </a>
 
-        <!-- PREVIOUS TIMETABLES -->
-        <a href="{% url 'saved_timetable_list' %}" class="dash-card">
-            <div class="dash-icon-wrap">
-                <i class="icon fas fa-calendar-alt"></i>
-            </div>
-            <h3>Your Timetables</h3>
-            <p>View History</p>
-        </a>
+      <!-- PREVIOUS TIMETABLES -->
+      <a href="{% url 'saved_timetable_list' %}" class="dash-card">
+        <div class="dash-icon-wrap">
+          <i class="icon fas fa-calendar-alt"></i>
+        </div>
+        <h3>Your Timetables</h3>
+        <p>View History</p>
+      </a>
 
-        <!-- CSV CONVERTER -->
-        <a href="{% url 'convert_csv' %}" class="dash-card">
-            <div class="dash-icon-wrap">
-                <i class="icon fas fa-file-csv"></i>
-            </div>
-            <h3>CSV Converter</h3>
-            <p>PDF/Excel → CSV</p>
-        </a>
+      <!-- SEND PREFERENCE MAIL -->
+      <a href="{% url 'send_preferences' %}" class="dash-card"
+        style="background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(99,102,241,.08));border-color:rgba(0,212,255,.45);">
+        <div class="dash-icon-wrap" style="background:rgba(0,212,255,.2);border-color:rgba(0,212,255,.5);">
+          <i class="icon fas fa-paper-plane" style="color:#67e8f9;"></i>
+        </div>
+        <h3 style="color:#67e8f9;">Send Pref Mail</h3>
+        <p>Email form links to teachers</p>
+      </a>
 
-        <!-- SEND PREFERENCE MAIL -->
-        <a href="{% url 'send_preferences' %}" class="dash-card" style="background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(99,102,241,.08));border-color:rgba(0,212,255,.45);">
-            <div class="dash-icon-wrap" style="background:rgba(0,212,255,.2);border-color:rgba(0,212,255,.5);">
-                <i class="icon fas fa-paper-plane" style="color:#67e8f9;"></i>
-            </div>
-            <h3 style="color:#67e8f9;">Send Pref Mail</h3>
-            <p>Email form links to teachers</p>
-        </a>
+      <!-- VIEW TEACHER RESPONSES -->
+      <a href="{% url 'teacher_responses' %}" class="dash-card"
+        style="background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.08));border-color:rgba(168,85,247,.45);">
+        <div class="dash-icon-wrap" style="background:rgba(168,85,247,.2);border-color:rgba(168,85,247,.5);">
+          <i class="icon fas fa-table" style="color:#d8b4fe;"></i>
+        </div>
+        <h3 style="color:#d8b4fe;">View Responses</h3>
+        <p>All submitted preferences</p>
+      </a>
 
-        <!-- VIEW TEACHER RESPONSES -->
-        <a href="{% url 'teacher_responses' %}" class="dash-card" style="background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.08));border-color:rgba(168,85,247,.45);">
-            <div class="dash-icon-wrap" style="background:rgba(168,85,247,.2);border-color:rgba(168,85,247,.5);">
-                <i class="icon fas fa-table" style="color:#d8b4fe;"></i>
-            </div>
-            <h3 style="color:#d8b4fe;">View Responses</h3>
-            <p>All submitted preferences</p>
-        </a>
+      <a href="{% url 'teacher_onboarding_responses' %}" class="dash-card"
+        style="background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(20,184,166,.08));border-color:rgba(34,197,94,.45);">
+        <div class="dash-icon-wrap" style="background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.42);">
+          <i class="icon fas fa-id-card" style="color:#86efac;"></i>
+        </div>
+        <h3 style="color:#86efac;">Teacher Forms</h3>
+        <p>{{ teacher_onboarding_count }} submitted</p>
+      </a>
 
-        <a href="{% url 'teacher_onboarding_responses' %}" class="dash-card" style="background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(20,184,166,.08));border-color:rgba(34,197,94,.45);">
-            <div class="dash-icon-wrap" style="background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.42);">
-                <i class="icon fas fa-id-card" style="color:#86efac;"></i>
-            </div>
-            <h3 style="color:#86efac;">Teacher Forms</h3>
-            <p>{{ teacher_onboarding_count }} submitted</p>
-        </a>
-
-        <a href="{% url 'prefilled_timetable_setup' %}" class="dash-card">
-          <div class="dash-icon-wrap">
-            <i class="icon fas fa-table-cells"></i>
-          </div>
-          <h3>Prefilled Table</h3>
-          <p>Manual slots before generation</p>
-        </a>
-
-        <a href="{% url 'saved_prefill_list' %}" class="dash-card">
-          <div class="dash-icon-wrap">
-            <i class="icon fas fa-folder-open"></i>
-          </div>
-          <h3>Saved Prefill</h3>
-          <p>Reuse locked manual slots</p>
-        </a>
-
-     </div>
+    </div>
 
   </div>
 
@@ -169,7 +122,7 @@
   <div class="flow-inner">
     <h2 class="flow-title">How to generate your timetable?</h2>
     <p class="flow-sub">
-      Follow this simple guided flow. Fill the data once and let SmartScheduler handle all clashes automatically.
+      Follow this guided flow. Fill the data once and let Schedule Craft handle all clashes automatically.
     </p>
 
     <div class="flow-line"></div>
@@ -260,583 +213,672 @@
 </section>
 
 <style>
-
-/* POP-UP STYLE */
-/* 🎯 Toast Container (below navbar) */
-#toast-container {
-  position: fixed;
-  top: 90px; /* adjust depending on navbar height */
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999999;
-}
-
-/* 🎯 Toast Box */
-.toast {
-  position: relative;
-  padding: 14px 45px 14px 18px;
-  border-radius: 12px;
-  color: #8b5cf6;
-  font-weight: 600;
-  font-size: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: toastIn 0.4s forwards ease-out;
-}
-
-/* Toast types */
-.toast.success { background: #10b981; }
-.toast.error   { background: #ef4444; }
-.toast.warning { background: #f59e0b; }
-.toast.info    { background: #fdfdfd; }
-
-/* Close Button (X) */
-.toast .close-btn {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #8b5cf6;
-  opacity: 0.8;
-  transition: 0.2s;
-}
-
-.toast .close-btn:hover {
-  opacity: 1;
-}
-
-/* Animation - entry */
-@keyframes toastIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Animation - exit */
-@keyframes toastOut {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-20px); }
-}
-
-
-
-:root {
-  --accent:#6366f1;
-  --pink:#ec4899;
-  --text:#e5e7eb;
-  --ai-glow:#8b5cf6;
-  --glass: rgba(255,255,255,0.07);
-  --border: rgba(255,255,255,0.12);
-}
-
-.admin-shortcuts-wrap {
-  position: relative;
- z-index: 90;
-  margin-top: 10px;
-}
-
-
-
-.admin-shortcuts-shell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  gap: 18px;
-  width: fit-content;
-    margin: 0 auto;
-  padding: 14px 20px;
-  border: 1px solid rgba(148,163,184,0.16);
-  border-radius: 999px;
-  background: rgba(10,15,35,0.72);
-  box-shadow: 0 20px 50px rgba(2,6,23,0.34);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.admin-shortcut {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  padding: 10px 30px;
-  border: 0;
-  border-radius: 18px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-}
-
-.admin-shortcut:hover {
-  transform: translateY(-2px) scale(1.04);
-  filter: brightness(1.04);
-}
-
-.admin-shortcut-subscribe {
-  background: linear-gradient(135deg, #10b981, #22c55e);
-  box-shadow: 0 0 18px rgba(16,185,129,0.46);
-  flex: 1 1 0;
-}
-
-.admin-shortcut-subscribe:hover {
-  box-shadow: 0 0 28px rgba(34,197,94,0.72);
-}
-
-.admin-shortcut-demo {
-  background: linear-gradient(135deg, #f59e0b, #f97316);
-  box-shadow: 0 0 18px rgba(249,115,22,0.46);
-  flex: 1.25 1 0;
-}
-
-.admin-shortcut-demo:hover {
-  box-shadow: 0 0 28px rgba(249,115,22,0.72);
-}
-
-.admin-shortcut-csv {
-  position: relative;
-  gap: 6px;
-    min-height: 54px;
-  padding: 5px 16px 5px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.95);
-  color: #1e1b4b;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  overflow: visible;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 12px rgba(99,102,241,0.1);
-  animation: adminCsvAttentionPulse 2s ease-in-out infinite;
-  flex: 0 0 auto;
-}
-
-.admin-shortcut-csv:hover {
-  background: #fff;
-  color: #1e1b4b;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.16), 0 0 18px rgba(99,102,241,0.18);
-}
-
-.admin-csv-orb {
-  position: relative;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6);
-  animation: adminCsvOrbSpin 3s linear infinite;
-  box-shadow: 0 0 8px rgba(99,102,241,0.5), 0 0 16px rgba(236,72,153,0.3);
-}
-
-.admin-csv-orb::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.92);
-}
-
-@keyframes adminCsvAttentionPulse {
-  0% {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 6px rgba(34,197,94,0);
-    background: rgba(255,255,255,0.95);
+  /* POP-UP STYLE */
+  /* 🎯 Toast Container (below navbar) */
+  #toast-container {
+    position: fixed;
+    top: 90px;
+    /* adjust depending on navbar height */
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999999;
   }
-  50% {
-    box-shadow: 0 2px 12px rgba(34,197,94,0.35), 0 0 20px rgba(34,197,94,0.22), 0 0 30px rgba(34,197,94,0.12);
-    background: rgba(34,197,94,0.14);
+
+  /* 🎯 Toast Box */
+  .toast {
+    position: relative;
+    padding: 14px 45px 14px 18px;
+    border-radius: 12px;
+    color: #8b5cf6;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: toastIn 0.4s forwards ease-out;
   }
-  100% {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 6px rgba(34,197,94,0);
-    background: rgba(255,255,255,0.95);
+
+  /* Toast types */
+  .toast.success {
+    background: #10b981;
   }
-}
 
-@keyframes adminCsvOrbSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  .toast.error {
+    background: #ef4444;
+  }
 
-/* HERO */
-.hero {
-  position: relative;
-  padding: 72px 20px 40px;
-  text-align: center;
-}
+  .toast.warning {
+    background: #f59e0b;
+  }
 
-.hero-heading {
-  font-size: 48px;
-  font-weight: 700;
-  background: linear-gradient(120deg, #fff, var(--accent), var(--pink));
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 20px rgba(255,255,255,0.2);
-}
+  .toast.info {
+    background: #fdfdfd;
+  }
 
-/* BUTTON */
-.glow-btn {
-  position: relative;
-  display: inline-block;
-  padding: 14px 42px;
-  font-weight: 600;
-  font-size: 20px;
-  text-decoration: none;
-  color: #fff;
-  border-radius: 999px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--accent), var(--pink));
-  box-shadow: 0 0 22px var(--ai-glow);
-  transition: 0.25s ease;
-}
+  /* Close Button (X) */
+  .toast .close-btn {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #8b5cf6;
+    opacity: 0.8;
+    transition: 0.2s;
+  }
 
-.glow-btn span {
-  position: relative;
-  z-index: 2;
-}
+  .toast .close-btn:hover {
+    opacity: 1;
+  }
 
-.glow-btn:before {
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: 0.5s;
-}
+  /* Animation - entry */
+  @keyframes toastIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
 
-.glow-btn:hover {
-  transform:translateY(-4px) scale(1.05);
-}
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-.glow-btn:hover:before {
-  left:100%;
-}
+  /* Animation - exit */
+  @keyframes toastOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-/* DASHBOARD */
-.dash-wrapper { margin-top: 60px; }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
 
-.dash-welcome {
-  font-size: 28px;
-  color: var(--text);
-  margin: 0 0 12px;
-  text-shadow: 0 0 14px rgba(255,255,255,0.25);
-}
 
-/* GRID */
-.dash-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-  gap: 25px;
-  padding: 0 15px;
-}
 
-/* CARDS */
-.dash-card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  padding: 26px;
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-  backdrop-filter: blur(12px);
-  transition: 0.25s ease;
-  box-shadow: 0 0 22px rgba(99,102,241,0.20);
-}
+  :root {
+    --accent: #6366f1;
+    --pink: #ec4899;
+    --text: #e5e7eb;
+    --ai-glow: #8b5cf6;
+    --glass: rgba(255, 255, 255, 0.07);
+    --border: rgba(255, 255, 255, 0.12);
+  }
 
-/* ICON WRAPPER */
-.dash-icon-wrap {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 12px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 12px rgba(140, 82, 255, 0.3);
-  transition: 0.3s ease;
-}
+  .admin-shortcuts-wrap {
+    position: relative;
+    z-index: 90;
+    margin-top: 10px;
+  }
 
-/* ICONS */
-.icon {
-  font-size: 32px;
-  color: #b4b9ff;
-  text-shadow: 0 0 8px rgba(140,82,255,0.5);
-  transition: 0.3s ease-in-out;
-}
 
-/* ON HOVER */
-.dash-card:hover .dash-icon-wrap {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px var(--accent), 0 0 35px var(--pink);
-}
 
-.dash-card:hover .icon {
-  color: #fff;
-  text-shadow: 0 0 14px rgba(255,255,255,0.8);
-}
-
-.dash-card h3 { font-size: 18px; margin-bottom: 6px; }
-
-.dash-card p { font-size: 16px; opacity: 0.9; }
-
-/* ============= FLOW SECTION ============= */
-.flow-section {
-  position: relative;
-  padding: 60px 20px 80px;
-  z-index: 1;
-}
-
-.flow-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.flow-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #f9fafb;
-  margin-bottom: 10px;
-}
-
-.flow-sub {
-  font-size: 15px;
-  color: #cbd5f5;
-  max-width: 620px;
-  margin: 0 auto 30px;
-}
-
-/* central faint line */
-.flow-line {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 160px;
-  width: 2px;
-  height: 320px;
-  background: linear-gradient(to bottom, transparent, rgba(129,140,248,0.7), transparent);
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/* steps grid */
-.flow-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 22px;
-  margin-top: 10px;
-}
-
-/* flow cards */
-.flow-card {
-  position: relative;
-  background: rgba(15,23,42,0.85);
-  border-radius: 18px;
-  padding: 20px 18px 18px;
-  border: 1px solid rgba(148,163,253,0.35);
-  box-shadow: 0 0 18px rgba(79,70,229,0.35);
-  text-align: left;
-  color: #e5e7eb;
-  overflow: hidden;
-  transform: translateY(25px);
-  opacity: 0;
-  transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-/* stagger via CSS variable */
-.flow-card:nth-child(1) { transition-delay: 0.05s; }
-.flow-card:nth-child(2) { transition-delay: 0.10s; }
-.flow-card:nth-child(3) { transition-delay: 0.15s; }
-.flow-card:nth-child(4) { transition-delay: 0.20s; }
-.flow-card:nth-child(5) { transition-delay: 0.25s; }
-.flow-card:nth-child(6) { transition-delay: 0.30s; }
-.flow-card:nth-child(7) { transition-delay: 0.35s; }
-
-.flow-card.visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* subtle glow on hover */
-.flow-card:hover {
-  box-shadow: 0 0 24px rgba(129,140,248,0.7), 0 0 40px rgba(236,72,153,0.4);
-  border-color: rgba(236,72,153,0.8);
-}
-
-/* step badge */
-.step-badge {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #a5b4fc;
-  padding: 3px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(129,140,248,0.6);
-  background: rgba(15,23,42,0.9);
-}
-
-/* icon circle */
-.flow-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 15px;
-  background: radial-gradient(circle at 30% 0, #f9a8d4, #4f46e5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 14px;
-  box-shadow: 0 0 18px rgba(244,114,182,0.7);
-}
-
-.flow-icon i {
-  color: #f9fafb;
-  font-size: 20px;
-}
-
-.flow-card h3 {
-  font-size: 17px;
-  margin-bottom: 6px;
-}
-
-.flow-card p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #cbd5f5;
-  margin-bottom: 12px;
-}
-
-/* mini link button */
-.flow-link {
-  font-size: 13px;
-  text-decoration: none;
-  color: #a5b4fc;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.flow-link.primary-link {
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--pink));
-  color: #fff;
-  box-shadow: 0 0 18px rgba(129,140,248,0.7);
-}
-
-.flow-link.primary-link:hover {
-  transform: translateY(-1px);
-}
-
-/* special highlight for final card */
-.final-step {
-  background: radial-gradient(circle at top left, rgba(236,72,153,0.25), rgba(15,23,42,0.9));
-}
-
-/* CANVAS BG */
-#stars, #waves {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-#stars { z-index: 0; }
-#waves { z-index: -1; opacity:0.4; }
-
-/* RESPONSIVE */
-@media(max-width:768px){
   .admin-shortcuts-shell {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 12px;
-    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    gap: 18px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 14px 20px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 999px;
+    background: rgba(10, 15, 35, 0.72);
+    box-shadow: 0 20px 50px rgba(2, 6, 23, 0.34);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   }
-  .admin-shortcut {
-    width: 100%;
-  }
-  .hero-heading { font-size: 36px; }
-  .hero { padding-top: 72px; }
-  .flow-line { display:none; }
-  .flow-card { text-align:left; }
-}
 
-@media(max-width:480px){
-  .hero-heading { font-size: 30px; }
-  .glow-btn { font-size: 16px; padding: 12px 30px; }
-  .flow-title { font-size: 24px; }
-}
+  .admin-shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+
+  .admin-shortcut:hover {
+    transform: translateY(-2px) scale(1.04);
+    filter: brightness(1.04);
+  }
+
+  .admin-shortcut-subscribe {
+    background: linear-gradient(135deg, #10b981, #22c55e);
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.46);
+    flex: 1 1 0;
+  }
+
+  .admin-shortcut-subscribe:hover {
+    box-shadow: 0 0 28px rgba(34, 197, 94, 0.72);
+  }
+
+  .admin-shortcut-demo {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    box-shadow: 0 0 18px rgba(249, 115, 22, 0.46);
+    flex: 1.25 1 0;
+  }
+
+  .admin-shortcut-demo:hover {
+    box-shadow: 0 0 28px rgba(249, 115, 22, 0.72);
+  }
+
+  .admin-shortcut-csv {
+    position: relative;
+    gap: 6px;
+    min-height: 54px;
+    padding: 5px 16px 5px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e1b4b;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    overflow: visible;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 12px rgba(99, 102, 241, 0.1);
+    animation: adminCsvAttentionPulse 2s ease-in-out infinite;
+    flex: 0 0 auto;
+  }
+
+  .admin-shortcut-csv:hover {
+    background: #fff;
+    color: #1e1b4b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16), 0 0 18px rgba(99, 102, 241, 0.18);
+  }
+
+  .admin-csv-orb {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6);
+    animation: adminCsvOrbSpin 3s linear infinite;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5), 0 0 16px rgba(236, 72, 153, 0.3);
+  }
+
+  .admin-csv-orb::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  @keyframes adminCsvAttentionPulse {
+    0% {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 6px rgba(34, 197, 94, 0);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    50% {
+      box-shadow: 0 2px 12px rgba(34, 197, 94, 0.35), 0 0 20px rgba(34, 197, 94, 0.22), 0 0 30px rgba(34, 197, 94, 0.12);
+      background: rgba(34, 197, 94, 0.14);
+    }
+
+    100% {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 6px rgba(34, 197, 94, 0);
+      background: rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  @keyframes adminCsvOrbSpin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 72px 20px 40px;
+    text-align: center;
+  }
+
+  .hero-heading {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(120deg, #fff, var(--accent), var(--pink));
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+
+  /* BUTTON */
+  .glow-btn {
+    position: relative;
+    display: inline-block;
+    padding: 14px 42px;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    box-shadow: 0 0 22px var(--ai-glow);
+    transition: 0.25s ease;
+  }
+
+  .glow-btn span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .glow-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+  }
+
+  .glow-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .glow-btn:hover:before {
+    left: 100%;
+  }
+
+  /* DASHBOARD */
+  .dash-wrapper {
+    margin-top: 60px;
+  }
+
+  .dash-welcome {
+    font-size: 28px;
+    color: var(--text);
+    margin: 0 0 12px;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+  }
+
+  /* GRID */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 25px;
+    padding: 0 15px;
+  }
+
+  /* CARDS */
+  .dash-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 26px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    transition: 0.25s ease;
+    box-shadow: 0 0 22px rgba(99, 102, 241, 0.20);
+  }
+
+  /* ICON WRAPPER */
+  .dash-icon-wrap {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 12px rgba(140, 82, 255, 0.3);
+    transition: 0.3s ease;
+  }
+
+  /* ICONS */
+  .icon {
+    font-size: 32px;
+    color: #b4b9ff;
+    text-shadow: 0 0 8px rgba(140, 82, 255, 0.5);
+    transition: 0.3s ease-in-out;
+  }
+
+  /* ON HOVER */
+  .dash-card:hover .dash-icon-wrap {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px var(--accent), 0 0 35px var(--pink);
+  }
+
+  .dash-card:hover .icon {
+    color: #fff;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+  }
+
+  .dash-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .dash-card p {
+    font-size: 16px;
+    opacity: 0.9;
+  }
+
+  /* ============= FLOW SECTION ============= */
+  .flow-section {
+    position: relative;
+    padding: 60px 20px 80px;
+    z-index: 1;
+  }
+
+  .flow-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .flow-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f9fafb;
+    margin-bottom: 10px;
+  }
+
+  .flow-sub {
+    font-size: 15px;
+    color: #cbd5f5;
+    max-width: 620px;
+    margin: 0 auto 30px;
+  }
+
+  /* central faint line */
+  .flow-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 160px;
+    width: 2px;
+    height: 320px;
+    background: linear-gradient(to bottom, transparent, rgba(129, 140, 248, 0.7), transparent);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* steps grid */
+  .flow-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 10px;
+  }
+
+  /* flow cards */
+  .flow-card {
+    position: relative;
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 18px;
+    padding: 20px 18px 18px;
+    border: 1px solid rgba(148, 163, 253, 0.35);
+    box-shadow: 0 0 18px rgba(79, 70, 229, 0.35);
+    text-align: left;
+    color: #e5e7eb;
+    overflow: hidden;
+    transform: translateY(25px);
+    opacity: 0;
+    transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* stagger via CSS variable */
+  .flow-card:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+
+  .flow-card:nth-child(2) {
+    transition-delay: 0.10s;
+  }
+
+  .flow-card:nth-child(3) {
+    transition-delay: 0.15s;
+  }
+
+  .flow-card:nth-child(4) {
+    transition-delay: 0.20s;
+  }
+
+  .flow-card:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+
+  .flow-card:nth-child(6) {
+    transition-delay: 0.30s;
+  }
+
+  .flow-card:nth-child(7) {
+    transition-delay: 0.35s;
+  }
+
+  .flow-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* subtle glow on hover */
+  .flow-card:hover {
+    box-shadow: 0 0 24px rgba(129, 140, 248, 0.7), 0 0 40px rgba(236, 72, 153, 0.4);
+    border-color: rgba(236, 72, 153, 0.8);
+  }
+
+  /* step badge */
+  .step-badge {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a5b4fc;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(129, 140, 248, 0.6);
+    background: rgba(15, 23, 42, 0.9);
+  }
+
+  /* icon circle */
+  .flow-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    background: radial-gradient(circle at 30% 0, #f9a8d4, #4f46e5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    box-shadow: 0 0 18px rgba(244, 114, 182, 0.7);
+  }
+
+  .flow-icon i {
+    color: #f9fafb;
+    font-size: 20px;
+  }
+
+  .flow-card h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+
+  .flow-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cbd5f5;
+    margin-bottom: 12px;
+  }
+
+  /* mini link button */
+  .flow-link {
+    font-size: 13px;
+    text-decoration: none;
+    color: #a5b4fc;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .flow-link.primary-link {
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    color: #fff;
+    box-shadow: 0 0 18px rgba(129, 140, 248, 0.7);
+  }
+
+  .flow-link.primary-link:hover {
+    transform: translateY(-1px);
+  }
+
+  /* special highlight for final card */
+  .final-step {
+    background: radial-gradient(circle at top left, rgba(236, 72, 153, 0.25), rgba(15, 23, 42, 0.9));
+  }
+
+  /* CANVAS BG */
+  #stars,
+  #waves {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  #stars {
+    z-index: 0;
+  }
+
+  #waves {
+    z-index: -1;
+    opacity: 0.4;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:768px) {
+    .admin-shortcuts-shell {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 28px;
+    }
+
+    .admin-shortcut {
+      width: 100%;
+    }
+
+    .hero-heading {
+      font-size: 36px;
+    }
+
+    .hero {
+      padding-top: 72px;
+    }
+
+    .flow-line {
+      display: none;
+    }
+
+    .flow-card {
+      text-align: left;
+    }
+  }
+
+  @media(max-width:480px) {
+    .hero-heading {
+      font-size: 30px;
+    }
+
+    .glow-btn {
+      font-size: 16px;
+      padding: 12px 30px;
+    }
+
+    .flow-title {
+      font-size: 24px;
+    }
+  }
 </style>
 
 <!-- POP-UP ANIMATION -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const toasts = document.querySelectorAll(".toast");
 
     toasts.forEach((toast) => {
 
-        const closeBtn = toast.querySelector(".close-btn");
+      const closeBtn = toast.querySelector(".close-btn");
 
-        // Auto-hide after 3 seconds
-        const timeout = setTimeout(() => {
-            toast.style.animation = "toastOut 0.5s forwards ease-in";
-            setTimeout(() => toast.remove(), 500);
-        }, 3000);
+      // Auto-hide after 3 seconds
+      const timeout = setTimeout(() => {
+        toast.style.animation = "toastOut 0.5s forwards ease-in";
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
 
-        // Manual close button
-        closeBtn.addEventListener("click", () => {
-            clearTimeout(timeout);
-            toast.style.animation = "toastOut 0.5s forwards ease-in";
-            setTimeout(() => toast.remove(), 500);
-        });
+      // Manual close button
+      closeBtn.addEventListener("click", () => {
+        clearTimeout(timeout);
+        toast.style.animation = "toastOut 0.5s forwards ease-in";
+        setTimeout(() => toast.remove(), 500);
+      });
     });
-});
+  });
 </script>
 
 
 <!-- STARFIELD -->
 <script>
-/* same starfield script kept */
+  /* same starfield script kept */
 </script>
 
 <!-- WAVES -->
 <script>
-/* same waves script kept */
+  /* same waves script kept */
 </script>
 
 <!-- FLOW SCROLL ANIMATION -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".flow-card");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".flow-card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-  cards.forEach((card) => observer.observe(card));
-});
+    cards.forEach((card) => observer.observe(card));
+  });
 </script>
 
 {% endblock %}
